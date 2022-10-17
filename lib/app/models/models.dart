@@ -1,0 +1,1 @@
+export './register_user_model.dart';

@@ -67,6 +67,16 @@ class TextStyles {
     color: ColorsApp.instance.primary,
   );
 
+  TextStyle get titleWhite => textPrimaryFontBold.copyWith(
+    fontSize: 22,
+    color: ColorsApp.instance.white,
+  );
+
+  TextStyle get titleBlack => textPrimaryFontBold.copyWith(
+    fontSize: 22,
+    color: ColorsApp.instance.black,
+  );
+
   //componentes font
   TextStyle get labelTextField => textSecondaryFontRegular.copyWith(
     color: ColorsApp.instance.greyDart,

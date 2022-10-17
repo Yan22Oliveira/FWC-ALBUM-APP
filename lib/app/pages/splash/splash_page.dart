@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
+import './presenter/splash_presenter.dart';
+import './view/splash_view_impl.dart';
 import '../../core/core.dart';
 
 class SplashPage extends StatefulWidget {
 
-  const SplashPage({Key? key}) : super(key: key);
+  final SplashPresenter presenter;
+  const SplashPage({required this.presenter, Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messages<SplashPage>{
+class _SplashPageState extends SplashViewImpl {
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +23,9 @@ class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messag
     return Scaffold(
       backgroundColor: context.colors.primary,
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background_splash.png'),
+            image: AssetImage(context.images.backgroundSplash),
             fit: BoxFit.cover,
           ),
         ),
@@ -33,7 +36,7 @@ class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messag
               child: Padding(
                 padding: EdgeInsets.only(top: size.height * .08),
                 child: Image.asset(
-                  'assets/images/fifa_logo.png',
+                  context.images.fifaLogo,
                   height: size.height * .25,
                 ),
               ),
@@ -43,7 +46,9 @@ class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messag
               child: Padding(
                 padding: EdgeInsets.only(bottom: size.height * .19),
                 child: Button(
-                  onPressed: (){},
+                  onPressed: (){
+                    widget.presenter.checkLogin();
+                  },
                   width: size.width * .9,
                   buttonStyle: context.buttonStyles.yellowButton,
                   labelStyle: context.textStyles.textSecondaryFontExtraBoldPrimaryColor,
@@ -55,7 +60,7 @@ class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messag
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20,),
-                child: Image.asset('assets/images/bandeiras.png'),
+                child: Image.asset(context.images.bandeiras),
               ),
             ),
           ],
